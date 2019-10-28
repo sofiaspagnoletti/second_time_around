@@ -4,9 +4,8 @@ import "./itemcardstyle.css";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Geocode from "react-geocode";
 import spinner from "../components/SimpleMap/mr_worldwide.gif"
-import MapModal from "../components/traesModal";
+import MapModal from "./MapModal";
 var dateFormat = require('dateformat');
-
 
 const style = {
   width: '93%',
@@ -17,15 +16,10 @@ class ItemCard extends Component {
 
   state = {
     number: "",
-    //claimed_date:"",
     text: "Claim it",
-    // mapAddress: "Location",
-    // idtest: "",
     position: ""
-
   }
 
-  // User provides an address and Geocode will provide the lat and lng coordinates
   getUserCoordinates = address => {
     console.log('getUserCoordinate test', address)
     Geocode.setApiKey("AIzaSyC43qVzPHXSL3TaW4zNV8Kwu6a3PdmLcp8")
@@ -39,7 +33,6 @@ class ItemCard extends Component {
           lngd: lng
         });
         console.log('donate user ', lat, lng);
-        // console.log('donate user');
       },
       error => {
         console.log('getUserCoordinate test err', address)
@@ -51,14 +44,11 @@ class ItemCard extends Component {
   componentDidMount() {
     // Google Geolocation Position
     navigator.geolocation.getCurrentPosition((position) => {
-      // console.log("Geolocation Testing");
-      // console.log(position)
       this.setState({
         position
       })
     });
   }
-
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -72,24 +62,20 @@ class ItemCard extends Component {
     console.log("inside click" + id);
     var claimed_date = new Date();
     console.log("ooo" + claimed_date);
-    //this.setState({idtest:id})
-    //var claimedDate=claimed_date;
+
     API.updatePost(id)
       .then(res => {
         console.log(res.data);
       })
       .catch(err => console.log(err));
-
     this.setState({
       text: "claimed"
     });
-
   };
 
   updatePost = () => {
     console.log(this.state.claimed_date);
     console.log(this.state.idtest);
-    // console.log("gafsgas");
     const msg = {
       number: this.state.number,
       message: "Thanks for visiting SecondTimeAround!order confirmed.collect your item within 2 days"
@@ -97,18 +83,12 @@ class ItemCard extends Component {
 
     API.getEmail(msg)
       .then(res => {
-        // this.props.updatestock(this.state.stocks);
         console.log(res.data);
       })
       .catch(err => console.log(err));
-
   };
 
-
-
   render() {
-    //console.log(this.props.item.itemName);
-
     return (
       <div className="col-md-4" >
         <div className="card cardstyle">
@@ -118,7 +98,6 @@ class ItemCard extends Component {
             <hr></hr>
             <p className="cardcontent card-text">Pick it up at {this.props.item.Address}</p>
             <p className="cardcontent card-text">This item was posted on  {dateFormat(this.props.item.date, "dddd, mmmm dS, yyyy, h:MM:ss TT")} .</p>
-            {/* <p>Items available for 5 days after posting</p> */}
           </div>
           <div class="card-footer">
             {/*<!-- Button trigger modal for Claim it -->*/}
@@ -128,13 +107,6 @@ class ItemCard extends Component {
           </div>
            
            <MapModal modalID={this.props.item._id} position={this.state.position} lat={this.state.latd} lng={this.state.lngd}/>
-
-          {/*<!-- Button trigger modal for Claim it -->*/}
-          {/* <div className="col-md-4">
-            <div className="">
-              <button type="button" className="navbutton btn btn-warning my-2 btn-sm" data-toggle="modal" data-target={"#exampleModalCenter1" + this.props.item._id} onClick={() => this.handleClick(this.props.item._id)} >{this.state.text}</button>
-            </div>
-          </div> */}
 
           {/*<!-- Modal for Claim it -->*/}
           <div className="modal fade" id={"exampleModalCenter1" + this.props.item._id} tabIndex="-1" role="dialog"
@@ -167,22 +139,11 @@ class ItemCard extends Component {
               </div>
             </div>
           </div>
-
-          
-
         </div>
-
       </div>
-
-
-
     );
   }
 }
 
 export default ItemCard;
 
-
-// export default GoogleApiWrapper({
-//   apiKey: "AIzaSyC43qVzPHXSL3TaW4zNV8Kwu6a3PdmLcp8"
-// })(ItemCard);

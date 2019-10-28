@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-// import API from "../utils/API";
-// import "./itemcardstyle.css";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-// import Geocode from "react-geocode";
 import spinner from "../SimpleMap/mr_worldwide.gif";
 
 

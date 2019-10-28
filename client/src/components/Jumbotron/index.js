@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import "./style.css";
-// import jumbogif from '../Jumbotron/jumbogif.gif'
-import API from "../../utils/API";
-
 
 function Jumbotron() {
     return (
@@ -10,7 +7,6 @@ function Jumbotron() {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        {/* <img src={jumbogif} alt="jumbotrongif" width="500px" height="430px" /> */}
                         <img src="https://cdn.dribbble.com/users/470545/screenshots/3607374/moving-drib.gif"alt="jumbotrongif" width="500px" height="430px" />
 
                     </div>

@@ -29,11 +29,6 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* .container { 
-  height: 200px;
-  position: relative;
-  border: 3px solid green; 
-} */
 
 .vertical-center {
   margin: 0;
@@ -57,8 +52,6 @@
     float: left;
   }
   
-  
-
   .formfield{
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;

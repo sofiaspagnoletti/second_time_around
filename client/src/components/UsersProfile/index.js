@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./style.css";
 import API from "../../utils/API";
-import ItemCard2 from "../ItemCard2";
+import ItemsDonated from "../ItemsDonated";
 
 class UsersProfile extends React.Component {
 
@@ -69,7 +69,7 @@ class UsersProfile extends React.Component {
           {this.state.stocks.map(stock =>
 
 
-            <ItemCard2 item={stock} key={stock.stock_id} />)}
+            <ItemsDonated item={stock} key={stock.stock_id} />)}
         </div>
       </div>
     );

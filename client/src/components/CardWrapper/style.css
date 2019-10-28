@@ -1,6 +1,4 @@
 .classwrapper {
-    /* background: #ECEFF1; */
-    /* background: whitesmoke; */
     display: flex;
     height: 100%;
    ;
@@ -10,5 +8,4 @@
     justify-content: right;
     align-content: flex-start;
     overflow: auto;
-    
   }

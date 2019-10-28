@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import API from '../../utils/API';
-// import spinner from '../SimpleMap/mr_worldwide.gif';
 import spinner from '../SimpleMap/spinner.gif';
 import Geocode from "react-geocode";
-
 
 const style = {
     width: '90%',
@@ -19,13 +17,9 @@ class SimpleMap extends Component {
         stocks: []
     }
 
-
-
     componentDidMount() {
         console.log("TRYING");
-        
-
-
+    
         // provided an address and Geocode will provide a lat and lng coordinate
         Geocode.setApiKey("AIzaSyC43qVzPHXSL3TaW4zNV8Kwu6a3PdmLcp8")
         
@@ -39,27 +33,12 @@ class SimpleMap extends Component {
             },
             error => {
                 console.log('testing for errors');
-                
                 console.error(error);
             }
         );
 
-        // Geocode.fromLatLng("48.8583701", "2.2922926").then(
-        //     response => {
-        //       const address = response.results[0].formatted_address;
-        //       console.log(address);
-        //     },
-        //     error => {
-        //       console.log('testing for errors');
-        //       console.error(error);
-        //     }
-        //   );
-
         // Google Geolocation Position
         navigator.geolocation.getCurrentPosition((position) => {
-            // console.log("Geolocation Testing");
-            // console.log(position)
-
             this.setState({
                 position
             })
@@ -74,10 +53,6 @@ class SimpleMap extends Component {
             })
             .catch(err => console.log(err));
     };
-
-    
-
-
 
     render() {
         return (
@@ -95,30 +70,12 @@ class SimpleMap extends Component {
                             onClick={this.onMapClicked}
                         >
                             <Marker onClick={this.onMarkerClick}
-                                name={'Current location'}
-                                // icon={{
-                                //     url: "https://mt.google.com/vt/icon/name=icons/onion/SHARED-mymaps-container-bg_4x.png,icons/onion/SHARED-mymaps-container_4x.png,icons/onion/1502-shape_star_4x.png&highlight=ff000000,0288D1,ff000000&scale=2.0",
-                                //     anchor: new google.maps.Point(32,32),
-                                //     scaledSize: new google.maps.Size(64,64)
-                                 />
-
-                            {/* <Marker onClick={this.onMarkerClick}
-                                name={'Seattle'}
-                                position={{lat: , lng: -lng}} /> */}
-
+                                name={'Current location'}/>
                             <InfoWindow onClose={this.onInfoWindowClose}>
-                                {/* <div>
-                                <h1>{this.state.selectedPlace.name}</h1>
-                                </div> */}
                             </InfoWindow>
                         </Map >) : (
-                            // <p>Map not ready</p>
                             <img src={spinner} alt="spinner" />
-                        )
-
-
-
-                        
+                        )       
                 }
             </div >
         );
